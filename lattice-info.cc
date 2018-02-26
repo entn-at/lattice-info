@@ -231,7 +231,7 @@ void UpdateLatticeSummary(const std::string& lattice_rspecifier, LatticeSummaryA
        !lattice_reader.Done(); lattice_reader.Next()) {
     Lattice lat = lattice_reader.Value();
     lattice_reader.FreeCurrent();
-    fst::FstInfo<typename Lattice::Arc> fst_info(lat, true);
+    fst::FstInfo fst_info(lat, true);
     const long double num_paths = ComputeNumberOfPaths<Lattice>(&lat);
     acc->num_lattices++;
     acc->num_states += fst_info.NumStates();
@@ -300,7 +300,7 @@ void PrintLatticeInfo(const std::string& lattice_rspecifier) {
     const std::string key = lattice_reader.Key();
     Lattice lat = lattice_reader.Value();
     lattice_reader.FreeCurrent();
-    fst::FstInfo<typename Lattice::Arc> fst_info(lat, true);
+    fst::FstInfo fst_info(lat, true);
     const long double num_paths = ComputeNumberOfPaths<Lattice>(&lat);
     std::cout << std::left << key << std::endl;
     std::cout << std::setw(50) << "# of states" << fst_info.NumStates() << std::endl;
